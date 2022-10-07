@@ -1,0 +1,15 @@
+<div class="absolute right-4 top-4 flex flex-col items-end">
+  <button class="flex gap-1 peer pb-2">
+    <div class="bg-rj-mountbatten-v2 rounded-full w-1 h-1"></div>
+    <div class="bg-rj-mountbatten-v2 rounded-full w-1 h-1"></div>
+    <div class="bg-rj-mountbatten-v2 rounded-full w-1 h-1"></div>
+  </button>
+
+  <div class="hidden peer-hover:flex hover:flex flex-col items-end bg-rj-azalea px-2 py-1 shadow-md rounded-md text-rj-thunder-v2">
+    <div *ngFor="let opt of options" >
+      <button (click)="action(opt)">
+        {{ opt }}
+      </button>
+    </div>
+  </div>
+</div>
