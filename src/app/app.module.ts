@@ -21,6 +21,9 @@ import { AlertComponent } from './components/alert/alert.component';
 import { EditAboutComponent } from './modals/edit-about/edit-about.component';
 import { OptionsDotsComponent } from './components/options-dots/options-dots.component';
 import { ModalComponent } from './modals/modal/modal.component';
+import { ScrollSectionDirective } from './directives/scroll-section.directive';
+import { ScrollAnchorDirective } from './directives/scroll-anchor.directive';
+import { ScrollManagerDirective } from './directives/scroll-manager.directive';
 
 registerLocaleData(localeEs, 'es');
 
@@ -37,6 +40,9 @@ registerLocaleData(localeEs, 'es');
     EditAboutComponent,
     OptionsDotsComponent,
     ModalComponent,
+    ScrollSectionDirective,
+    ScrollAnchorDirective,
+    ScrollManagerDirective,
   ],
   imports: [
     BrowserModule,

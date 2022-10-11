@@ -1,8 +1,6 @@
-<div class="h-[100vh] w-full flex flex-col">
+<div class="h-[100vh] w-full flex flex-col" appScrollManager>
   <app-navbar></app-navbar>
-  <app-home id="home"></app-home>
-  <app-about id="about"></app-about>
-  <app-experience id="experience"></app-experience>
-  <!-- <app-home class="bg-rj-gray h-full grid grid-rows-6 justify-items-center"></app-home> -->
-  <!-- <router-outlet></router-outlet> -->
+  <app-home appScrollSection="home"></app-home>
+  <app-about appScrollSection="about_me"></app-about>
+  <app-experience appScrollSection="experiences"></app-experience>
 </div>
