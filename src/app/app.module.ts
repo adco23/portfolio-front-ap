@@ -24,6 +24,8 @@ import { ModalComponent } from './modals/modal/modal.component';
 import { ScrollSectionDirective } from './directives/scroll-section.directive';
 import { ScrollAnchorDirective } from './directives/scroll-anchor.directive';
 import { ScrollManagerDirective } from './directives/scroll-manager.directive';
+import { EducationComponent } from './pages/education/education.component';
+import { CardV2Component } from './components/card-v2/card-v2.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -43,6 +45,8 @@ registerLocaleData(localeEs, 'es');
     ScrollSectionDirective,
     ScrollAnchorDirective,
     ScrollManagerDirective,
+    EducationComponent,
+    CardV2Component,
   ],
   imports: [
     BrowserModule,
