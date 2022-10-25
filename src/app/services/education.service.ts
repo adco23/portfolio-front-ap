@@ -24,7 +24,7 @@ export class EducationService {
   }
 
   deleteEducation(id: number): Observable<any> {
-    return this.httpClient.delete(`${this.backendURL}/exp/${id}`);
+    return this.httpClient.delete(`${this.backendURL}/edu/${id}`);
   }
 
   editEducation(id: number, education: Education): Observable<any> {

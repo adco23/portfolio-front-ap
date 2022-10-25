@@ -1,0 +1,11 @@
+<div class="flex flex-row gap-3">
+  <select name="month" #monthSelected (change)="onSelected('month')" class="form-select rounded-lg border-gray-300 mt-1 block shadow-sm focus:border-rj-azalea-v2 focus:ring focus:ring-rj-azalea focus:ring-opacity-50 h-10">
+    <option value="">Mes</option>
+    <option *ngFor="let month of all_months, let i = index" [value]="i + 1">{{month}}</option>
+  </select>
+
+  <select name="year" #yearSelected (change)="onSelected('year')" class="form-select rounded-lg border-gray-300 mt-1 block shadow-sm focus:border-rj-azalea-v2 focus:ring focus:ring-rj-azalea focus:ring-opacity-50 h-10">
+    <option value="">Año</option>
+    <option *ngFor="let year of range" [value]="year">{{year}}</option>
+  </select>
+</div>

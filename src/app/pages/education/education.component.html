@@ -3,83 +3,100 @@
 >
   <h1 class="pt-10 text-3xl font-bold">Educación</h1>
 
-  <!-- <button (click)="openDialog('add')" class="transition-all duration-150 ease-linear underline-from-center">agregar</button>
+  <button
+    class="transition-all duration-150 ease-linear underline-from-center"
+    (click)="openModal('add')"
+  >
+    agregar
+  </button>
 
-  <app-modal>
-
-    <h2 class="modal-title">{{dialog_title}} experiencia</h2>
-    <div class="w-full h-[1px] bg-gray-300 my-2"></div>
-
-    <form class="flex flex-col" (ngSubmit)="onSubmit()" [formGroup]="experienceForm" autocomplete="off">
-      <div class="input-container">
-        <label>Puesto</label>
-        <input type="text" name="position" formControlName="position" class="form-input" maxlength="100" minlength="3" spellcheck="true">
-        <div *ngIf="form.position.errors" class="error-msg">
-          <span *ngIf="form.position.errors.required">Obligatorio</span>
-          <span *ngIf="form.position.errors.maxlength">Debe tener una longitud menor o igual a 100 caracteres</span>
-          <span *ngIf="form.position.errors.minlength">Debe tener una longitud mayor a 3 caracteres</span>
-        </div>
-      </div>
-
-      <div class="input-container">
-        <label>Empresa</label>
-        <input type="text" name="company" formControlName="company" class="form-input " maxlength="100" spellcheck="true">
-        <div *ngIf="form.company.errors" class="error-msg">
-          <span *ngIf="form.company.errors.required">Obligatorio</span>
-          <span *ngIf="form.company.errors.maxlength">Debe tener una longitud menor o igual a 100 caracteres</span>
-          <span *ngIf="form.company.errors.minlength">Debe tener una longitud mayor a 3 caracteres</span>
-        </div>
-      </div>
-
-      <div class="input-container">
-        <label>Logo de la empresa</label>
-        <input type="text" name="company_img" formControlName="company_img" class="form-input ">
-        <img *ngIf="form.company_img.value" [src]="form.company_img.value" class="p-2">
-      </div>
-
-      <div class="input-container">
-        <label>Descripción del puesto</label>
-        <textarea name="description" formControlName="description" rows="3" class="form-textarea textarea" maxlength="1500" spellcheck="true"></textarea>
-        <div *ngIf="form.description.errors" class="error-msg">
-          <span *ngIf="form.description.errors.maxlength">Debe tener una longitud menor o igual a 1500 caracteres</span>
-        </div>
-      </div>
-
-      <div class="input-container">
-        <label>Inicio</label>
-        <input type="date" name="start_date" formControlName="start_date" class="form-input ">
-        <div *ngIf="form.start_date.errors" class="error-msg">
-          <span *ngIf="form.start_date.errors.required">Obligatorio</span>
-        </div>
-      </div>
-
-      <div class="input-container">
-        <label>Finalizado</label>
-        <input type="date" name="finish_date" formControlName="finish_date" class="form-input ">
-      </div>
-
-      <div class="modal-actions">
-        <button  class="cancel" (click)="onReset()">Cancelar</button>
-        <button type="submit" class="submit" [disabled]="experienceForm.invalid">{{dialog_config.btnText}}</button>
-      </div>
-    </form>
-  </app-modal> -->
-
-  <!-- <div class="flex flex-col w-full h-full md:items-center ">
-    <app-card *ngFor="let exp of educationList"
-      [experience]="exp" class="sm:w-2/3 md:w-5/6 lg:w-1/2"
+  <div class="flex flex-col w-full h-full md:items-center ">
+    <education-card *ngFor="let educationItem of educationList"
+      [education]="educationItem" class="sm:w-2/3 md:w-5/6 lg:w-1/2"
       (delete_action)="deleteItem($event)"
       (edit_action)="editItem($event)"
     >
-    </app-card>
-  </div> -->
-
-  <div class="flex flex-col w-full h-full md:items-center ">
-    <app-card *ngFor="let exp of educationList">
-    </app-card>
+    </education-card>
   </div>
 
+  <div *ngIf="showModal"
+    class="fixed inset-0 z-40 flex items-center justify-center w-screen overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+    <div
+      class="relative flex flex-col items-center justify-start w-11/12 h-5/6 md:h-3/4 top-5 max-w-3xl bg-white border-0 rounded-lg shadow-lg"
+    >
+      <form (ngSubmit)="onSubmit()" [formGroup]="educationForm" autocomplete="off"
+      class="flex flex-col w-full h-full justify-between items-center">
+
+        <div class="flex flex-col items-start w-11/12 py-4 h-[10%]">
+          <h4 class="text-xl font-bold uppercase">{{modal_config.title}}</h4>
+        </div>
+
+        <div class="flex flex-col items-center w-full overflow-y-scroll h-[80%] gap-2 justify-between">
+
+          <div class="input-container">
+            <label class="label_input">Titulo</label>
+            <input type="text" name="title" formControlName="title" class="form-input" maxlength="100" minlength="3" spellcheck="true">
+            <div *ngIf="form.title.errors" class="error-msg">
+              <span *ngIf="form.title.errors.required">obligatorio</span>
+              <span *ngIf="form.title.errors.maxlength">debe tener una longitud menor o igual a 100 caracteres</span>
+              <span *ngIf="form.title.errors.minlength">debe tener una longitud mayor a 3 caracteres</span>
+            </div>
+          </div>
+
+          <div class="input-container">
+            <label class="label_input">Instituto</label>
+            <input type="text" name="institute" formControlName="institute" class="form-input" maxlength="100" minlength="3" spellcheck="true">
+            <div *ngIf="form.institute.errors" class="error-msg">
+              <span *ngIf="form.institute.errors.maxlength">debe tener una longitud menor o igual a 100 caracteres</span>
+            </div>
+          </div>
+
+          <div class="input-container">
+            <label class="label_input">Descripción</label>
+            <input type="text" name="description" formControlName="description" class="form-input" maxlength="1500" spellcheck="true">
+            <div *ngIf="form.description.errors" class="error-msg">
+              <span *ngIf="form.description.errors.maxlength">debe tener una longitud menor o igual a 1500 caracteres</span>
+            </div>
+          </div>
+
+          <div class="input-container">
+            <label class="label_input">Fecha de Inicio</label>
+            <!-- <input type="date" name="start_date" formControlName="start_date" class="form-input"> -->
+            <app-date-selector (dateEvent)="getSelectedDate('start', $event)"></app-date-selector>
+            <div *ngIf="form.start_year.errors" class="error-msg">
+              <span *ngIf="form.start_year.errors.required">El año de inicio es obligatorio</span>
+            </div>
+
+          </div>
+
+          <div class="input-container">
+            <label class="label_input">Fecha de Finalización</label>
+            <!-- <input type="date" name="finish_date" formControlName="finish_date" class="form-input"> -->
+            <!-- <div *ngIf="form.finish_date.errors" class="error-msg">
+              <span *ngIf="form.finish_date.errors.required">obligatorio</span>
+            </div> -->
+
+            <app-date-selector (dateEvent)="getSelectedDate('finish', $event)"></app-date-selector>
+            <div *ngIf="form.finish_year.errors" class="error-msg">
+              <span *ngIf="form.finish_year.errors.greaterThan">El año debe ser posterior o igual al de inicio</span>
+            </div>
+            <div *ngIf="form.finish_month.errors" class="error-msg">
+              <span *ngIf="form.finish_month.errors.greaterThan">El mes debe ser posterior o igual al de inicio</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-actions py-2 h-[10%] w-11/12 flex flex-row justify-end">
+          <button  class="cancel" (click)="onReset()">Cancelar</button>
+          <button type="submit" class="submit" [disabled]="educationForm.invalid">{{modal_config.btnText}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="showModal" class="fixed inset-0 z-30 bg-black opacity-25"></div>
 </div>
 
-<!-- <app-alert [showAlert]="alert_config.show" [message]="alert_config.message" [typeAlert]="alert_config.type"></app-alert> -->
+<app-alert [showAlert]="alert_config.show" [message]="alert_config.message" [typeAlert]="alert_config.type"></app-alert>
 
