@@ -24,6 +24,10 @@ import { ModalComponent } from './modals/modal/modal.component';
 import { ScrollSectionDirective } from './directives/scroll-section.directive';
 import { ScrollAnchorDirective } from './directives/scroll-anchor.directive';
 import { ScrollManagerDirective } from './directives/scroll-manager.directive';
+import { EducationComponent } from './pages/education/education.component';
+import { EducationCardComponent } from './components/education-card/education-card.component';
+import { EducationModalComponent } from './modals/education-modal/education-modal.component';
+import { DateSelectorComponent } from './components/date-selector/date-selector.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -43,6 +47,10 @@ registerLocaleData(localeEs, 'es');
     ScrollSectionDirective,
     ScrollAnchorDirective,
     ScrollManagerDirective,
+    EducationComponent,
+    EducationCardComponent,
+    EducationModalComponent,
+    DateSelectorComponent,
   ],
   imports: [
     BrowserModule,
