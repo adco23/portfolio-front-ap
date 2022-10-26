@@ -152,7 +152,7 @@ export class EducationComponent implements OnInit {
   };
 
   editItem(id: any){
-    console.log('\x1b[33mEdit item: \x1b[0m', id);
+    // console.log('\x1b[33mEdit item: \x1b[0m', id);
     let edu = this.educationList.find(edu => edu.id === id);
 
     this.toEditId = id;
