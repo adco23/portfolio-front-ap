@@ -38,11 +38,11 @@ export class EducationComponent implements OnInit {
       institute: ['', [Validators.maxLength(100), Validators.minLength(3)]],
       description: [null, Validators.maxLength(1500)],
       // start_date: [''],
-      start_year: [1900, Validators.required],
-      start_month: [1],
+      start_year: [null, Validators.required],
+      start_month: [null],
       // finish_date: [''],
-      finish_year: [1900],
-      finish_month: [1],
+      finish_year: [null],
+      finish_month: [null],
     }, {
       validator: this.finishDate()
     });

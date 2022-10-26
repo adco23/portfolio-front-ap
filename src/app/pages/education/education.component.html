@@ -62,7 +62,12 @@
           <div class="input-container">
             <label class="label_input">Fecha de Inicio</label>
             <!-- <input type="date" name="start_date" formControlName="start_date" class="form-input"> -->
-            <app-date-selector (dateEvent)="getSelectedDate('start', $event)"></app-date-selector>
+            <app-date-selector
+              (dateEvent)="getSelectedDate('start', $event)"
+              [selected_month]="educationForm.controls['start_month'].value"
+              [selected_year]="educationForm.controls['start_year'].value"
+            >
+            </app-date-selector>
             <div *ngIf="form.start_year.errors" class="error-msg">
               <span *ngIf="form.start_year.errors.required">El año de inicio es obligatorio</span>
             </div>
@@ -76,7 +81,12 @@
               <span *ngIf="form.finish_date.errors.required">obligatorio</span>
             </div> -->
 
-            <app-date-selector (dateEvent)="getSelectedDate('finish', $event)"></app-date-selector>
+            <app-date-selector
+              (dateEvent)="getSelectedDate('finish', $event)"
+              [selected_month]="educationForm.controls['finish_month'].value"
+              [selected_year]="educationForm.controls['finish_year'].value"
+            >
+            </app-date-selector>
             <div *ngIf="form.finish_year.errors" class="error-msg">
               <span *ngIf="form.finish_year.errors.greaterThan">El año debe ser posterior o igual al de inicio</span>
             </div>
