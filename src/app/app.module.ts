@@ -12,22 +12,22 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ExperienceComponent } from './pages/experience/experience.component';
+import { EducationComponent } from './pages/education/education.component';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { CardComponent } from './components/card/card.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { OptionsDotsComponent } from './components/options-dots/options-dots.component';
+import { EducationCardComponent } from './components/education-card/education-card.component';
+import { DateSelectorComponent } from './components/date-selector/date-selector.component';
 
 import { EditAboutComponent } from './modals/edit-about/edit-about.component';
-import { OptionsDotsComponent } from './components/options-dots/options-dots.component';
 import { ModalComponent } from './modals/modal/modal.component';
+import { EducationModalComponent } from './modals/education-modal/education-modal.component';
 import { ScrollSectionDirective } from './directives/scroll-section.directive';
 import { ScrollAnchorDirective } from './directives/scroll-anchor.directive';
 import { ScrollManagerDirective } from './directives/scroll-manager.directive';
-import { EducationComponent } from './pages/education/education.component';
-import { EducationCardComponent } from './components/education-card/education-card.component';
-import { EducationModalComponent } from './modals/education-modal/education-modal.component';
-import { DateSelectorComponent } from './components/date-selector/date-selector.component';
 
 registerLocaleData(localeEs, 'es');
 
