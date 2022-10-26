@@ -28,6 +28,7 @@ import { EducationModalComponent } from './modals/education-modal/education-moda
 import { ScrollSectionDirective } from './directives/scroll-section.directive';
 import { ScrollAnchorDirective } from './directives/scroll-anchor.directive';
 import { ScrollManagerDirective } from './directives/scroll-manager.directive';
+import { ScardComponent } from './components/skeleton/scard/scard.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -51,6 +52,7 @@ registerLocaleData(localeEs, 'es');
     EducationCardComponent,
     EducationModalComponent,
     DateSelectorComponent,
+    ScardComponent,
   ],
   imports: [
     BrowserModule,

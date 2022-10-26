@@ -4,6 +4,7 @@
   <h1 class="pt-10 text-3xl font-bold">Educación</h1>
 
   <button
+    *ngIf="isLoaded"
     class="transition-all duration-150 ease-linear underline-from-center"
     (click)="openModal('add')"
   >
@@ -17,6 +18,10 @@
       (edit_action)="editItem($event)"
     >
     </education-card>
+
+    <app-scard *ngIf="!isLoaded" class="w-full md:w-5/6 lg:w-1/2"></app-scard>
+    <app-scard *ngIf="!isLoaded" class="w-full md:w-5/6 lg:w-1/2"></app-scard>
+    <app-scard *ngIf="!isLoaded" class="w-full md:w-5/6 lg:w-1/2"></app-scard>
   </div>
 
   <div *ngIf="showModal"

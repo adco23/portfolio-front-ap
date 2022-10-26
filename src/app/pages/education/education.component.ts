@@ -10,6 +10,7 @@ import { EducationService } from 'src/app/services/education.service';
 })
 export class EducationComponent implements OnInit {
   educationList: Education[] = [];
+  isLoaded: boolean = false;
   educationForm: FormGroup;
   toEditId: number;
   submitted: boolean = false;
@@ -49,7 +50,10 @@ export class EducationComponent implements OnInit {
   }
 
   private getEducation(): void {
-    this.educationService.getEducation().subscribe(data => this.educationList = [...data]);
+    this.educationService.getEducation().subscribe(data => {
+      this.educationList = [...data];
+      this.isLoaded = true;
+    });
   };
 
   private addEducation(): void {
