@@ -28,6 +28,6 @@ export class EducationService {
   }
 
   editEducation(id: number, education: Education): Observable<any> {
-    return this.httpClient.put(`${this.backendURL}/user/1/exp/${id}`, education);
+    return this.httpClient.put(`${this.backendURL}/user/1/edu/${id}`, education);
   }
 }

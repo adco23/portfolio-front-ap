@@ -62,7 +62,7 @@ export class EducationComponent implements OnInit {
         })
       } catch (error: any) {
         this.toggleAlert(error, 'danger');
-        console.log('\x1b[31mAdd experience error: \x1b[0m', error);
+        console.log('\x1b[31mAdd education error: \x1b[0m', error);
       }
     }
   };
@@ -76,7 +76,20 @@ export class EducationComponent implements OnInit {
         });
     } catch (error: any) {
       this.toggleAlert(error, 'danger');
-      console.log('\x1b[31mDelete experience error: \x1b[0m', error);
+      console.log('\x1b[31mDelete education error: \x1b[0m', error);
+    }
+  };
+
+  private editEducation(): void {
+    try {
+      this.educationService.editEducation(this.toEditId, this.educationForm.value)
+        .subscribe(data => {
+          this.toggleAlert(data.message, 'success');
+          this.getEducation();
+        });
+    } catch (error: any) {
+      this.toggleAlert(error, 'danger');
+      console.log('\x1b[31mEdit education error: \x1b[0m', error);
     }
   };
 
@@ -192,7 +205,7 @@ export class EducationComponent implements OnInit {
 
     this.modal_config.type === 'add' ?
       this.addEducation() :
-      console.log(this.educationForm.value);
+      this.editEducation();
 
     this.onReset();
   };
