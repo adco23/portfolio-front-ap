@@ -6,7 +6,7 @@ export class Skill {
 }
 
 enum skill_types {
-  hard,
-  soft,
-  language
+  hard = 'hard',
+  soft = 'soft',
+  language = 'language'
 }

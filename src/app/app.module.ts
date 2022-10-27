@@ -30,6 +30,9 @@ import { EducationModalComponent } from './modals/education-modal/education-moda
 import { ScrollSectionDirective } from './directives/scroll-section.directive';
 import { ScrollAnchorDirective } from './directives/scroll-anchor.directive';
 import { ScrollManagerDirective } from './directives/scroll-manager.directive';
+import { SkillChipsComponent } from './components/skill-chips/skill-chips.component';
+import { SkillFilterPipe } from './pipes/skill-filter.pipe';
+import { XMarksComponent } from './components/icons/x-marks/x-marks.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -55,6 +58,9 @@ registerLocaleData(localeEs, 'es');
     DateSelectorComponent,
     ScardComponent,
     SkillsComponent,
+    SkillChipsComponent,
+    SkillFilterPipe,
+    XMarksComponent,
   ],
   imports: [
     BrowserModule,

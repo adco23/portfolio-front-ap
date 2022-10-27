@@ -10,6 +10,27 @@
   >
     agregar
   </button> -->
+
+  <div class="w-full grid grid-rows-12 grid-cols-1 gap-4">
+    <div class="row-span-2">
+      <h3>Idiomas</h3>
+      <div class="flex flex-row gap-2 capitalize">
+        <app-skill-chips *ngFor="let item of skills | skillFilter: 'language'" [skill]="item"></app-skill-chips>
+      </div>
+    </div>
+    <div class="row-span-5">
+      <h3>Tecnologías</h3>
+      <div class="flex flex-row gap-2 capitalize">
+        <app-skill-chips *ngFor="let item of skills | skillFilter: 'hard'" [skill]="item"></app-skill-chips>
+      </div>
+    </div>
+    <div class="row-span-5">
+      <h3>Competencias</h3>
+      <div class="flex flex-row gap-2 capitalize">
+        <app-skill-chips *ngFor="let item of skills | skillFilter: 'soft'" [skill]="item"></app-skill-chips>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- <app-alert [showAlert]="alert_config.show" [message]="alert_config.message" [typeAlert]="alert_config.type"></app-alert> -->
