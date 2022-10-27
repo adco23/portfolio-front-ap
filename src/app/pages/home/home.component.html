@@ -5,18 +5,25 @@
     <!-- <img [src]="user.img" class="w-56 border-8 border-solid rounded-full border-rj-azalea md:w-72" alt="profile picture"> -->
     <div class="relative w-full h-full rounded-full img-grid"></div>
     <img
+      *ngIf="user.img"
       [src]="user.img"
       class="absolute w-56 rounded-full md:w-72"
       alt="profile picture"
     />
+    <div *ngIf="!user.img" class="absolute w-56 h-56 rounded-full md:w-72 md:h-72">
+      <div class="w-full h-full rounded-full animate-pulse bg-slate-200"></div>
+    </div>
   </div>
 
   <div class="row-span-2 row-start-5">
     <div class="flex flex-col items-center justify-center">
-      <h1 class="text-4xl font-bold">
+      <h1 *ngIf="user" class="text-4xl font-bold">
         {{ user.first_name }} {{ user.last_name }}
       </h1>
-      <h3>{{ user.title }}</h3>
+      <h3 *ngIf="user" >{{ user.title }}</h3>
+
+      <div *ngIf="!user.first_name" class="animate-pulse bg-slate-200 rounded-full h-10 w-80"></div>
+      <div *ngIf="!user.title" class="animate-pulse bg-slate-200 rounded-full h-8 w-48"></div>
     </div>
 
     <div

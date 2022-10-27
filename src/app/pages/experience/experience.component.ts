@@ -26,6 +26,7 @@ export class ExperienceComponent implements OnInit {
     show: false,
     type: '',
   }
+  isLoaded: boolean = false;
 
   constructor(
     private experienceService: ExperiencesService,
@@ -49,7 +50,10 @@ export class ExperienceComponent implements OnInit {
   }
 
   private getExperiences(): void {
-    this.experienceService.getExperience().subscribe(data => this.experiences = [...data]);
+    this.experienceService.getExperience().subscribe(data => {
+      this.experiences = [...data]
+      this.isLoaded = true;
+    });
   }
 
   private addExperience() {
