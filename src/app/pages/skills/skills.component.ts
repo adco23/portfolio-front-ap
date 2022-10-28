@@ -67,6 +67,19 @@ export class SkillsComponent implements OnInit {
     }
   };
 
+  private deleteSkill(id: number): void {
+    try {
+      this.skillService.deleteSkill(id)
+        .subscribe(data => {
+          this.toggleAlert(data.message, 'success');
+          this.getSkills();
+        });
+    } catch (error: any) {
+      this.toggleAlert(error, 'danger');
+      console.log('\x1b[31mDelete skill error: \x1b[0m', error);
+    }
+  };
+
   get form(): any {
     return this.skillForm.controls;
   };
