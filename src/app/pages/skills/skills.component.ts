@@ -14,6 +14,7 @@ export class SkillsComponent implements OnInit {
   skillForm: FormGroup;
   skillTypes: string[] = Object.values(skill_types);
   submitted: boolean = false;
+  toEditId: number;
 
   status = {
     isLoaded: false,
@@ -77,6 +78,19 @@ export class SkillsComponent implements OnInit {
     } catch (error: any) {
       this.toggleAlert(error, 'danger');
       console.log('\x1b[31mDelete skill error: \x1b[0m', error);
+    }
+  };
+
+  private editSkill(): void {
+    try {
+      this.skillService.editSkills(this.toEditId, this.skillForm.value)
+        .subscribe(data => {
+          this.toggleAlert(data.message, 'success');
+          this.getSkills();
+        });
+    } catch (error: any) {
+      this.toggleAlert(error, 'danger');
+      console.log('\x1b[31mEdit skill error: \x1b[0m', error);
     }
   };
 
