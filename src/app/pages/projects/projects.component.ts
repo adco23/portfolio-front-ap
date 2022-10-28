@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Project } from 'src/app/models/project';
+import { ProjectsService } from 'src/app/services/projects.service';
 
 @Component({
   selector: 'app-projects',
@@ -7,9 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectsComponent implements OnInit {
 
-  constructor() { }
+  projects: Project[];
+
+  status = {
+    isLoaded: false,
+    isEmpty: true,
+  }
+
+  constructor(
+    private projectService: ProjectsService
+  ) { }
 
   ngOnInit(): void {
+    this.getProjects();
   }
+
+  private getProjects(): void {
+    try {
+      this.projectService.getProjects()
+        .subscribe(data => {
+          this.projects = data;
+          this.status = {
+            isLoaded: true,
+            isEmpty: data.length === 0 ? true : false
+          }
+        })
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 }
