@@ -9,15 +9,15 @@
 
 @layer base {
   h1 {
-    @apply text-2xl font-DM_Mono text-rj-thunder-v2
+    @apply text-2xl font-DM_Mono text-rj-thunder-v2 cursor-default
   }
 
   h2 {
-    @apply text-xl font-DM_Mono text-rj-thunder-v2
+    @apply text-xl font-DM_Mono text-rj-thunder-v2 cursor-default
   }
 
   h3 {
-    @apply text-2xl font-Roboto_Condensed text-rj-mountbatten
+    @apply text-2xl font-Roboto_Condensed text-rj-mountbatten cursor-default
   }
 
   p {
