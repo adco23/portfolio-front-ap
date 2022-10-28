@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Skill } from 'src/app/models/skill';
 
 @Component({
@@ -8,8 +8,9 @@ import { Skill } from 'src/app/models/skill';
 })
 export class SkillChipsComponent implements OnInit {
 
-  @Input() skill: Skill;
   text: string;
+  @Input() skill: Skill;
+  @Output() deleteEvent = new EventEmitter<any>();
 
   constructor() { }
 
@@ -21,6 +22,10 @@ export class SkillChipsComponent implements OnInit {
     let lvl = this.skill.type === 'language' ? ` - ${this.skill.level}` : '';
 
     this.text = this.skill.name + lvl;
+  };
+
+  delete(): void {
+    this.deleteEvent.emit(this.skill.id);
   };
 
 }
