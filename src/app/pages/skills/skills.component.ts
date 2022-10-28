@@ -114,6 +114,10 @@ export class SkillsComponent implements OnInit {
     }, 3000);
   };
 
+  deleteItem(id: any) {
+    this.deleteSkill(id);
+  };
+
   onReset(): void {
     this.submitted = false;
     this.skillForm.reset();
