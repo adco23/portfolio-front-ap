@@ -11,19 +11,25 @@ import { SkillsService } from 'src/app/services/skills.service';
 export class SkillsComponent implements OnInit {
 
   skills: Skill[];
+  skillForm: FormGroup;
+  skillTypes: string[] = Object.values(skill_types);
+  submitted: boolean = false;
+
   status = {
     isLoaded: false,
     isEmpty: true,
   };
-  skillForm: FormGroup;
   modal_config = {
     show: false,
     type: '',
     btnText: '',
     title: ''
   };
-  skillTypes: string[] = Object.values(skill_types);
-  submitted: boolean = false;
+  alert_config = {
+    show: false,
+    message: '',
+    type: ''
+  };
 
   constructor(
     private skillService: SkillsService,
@@ -48,6 +54,19 @@ export class SkillsComponent implements OnInit {
     });
   };
 
+  private addSkill(): void {
+    try {
+      this.skillService.addSkill(this.skillForm.value)
+        .subscribe(data => {
+          this.toggleAlert(data.message, 'success');
+          this.getSkills();
+        })
+      } catch (error: any) {
+      this.toggleAlert(error, 'danger');
+      console.log('\x1b[31mAdd skill error: \x1b[0m', error);
+    }
+  };
+
   get form(): any {
     return this.skillForm.controls;
   };
@@ -70,6 +89,18 @@ export class SkillsComponent implements OnInit {
     }
   };
 
+  toggleAlert(message: string, type: string){
+    this.alert_config = {
+      show: true,
+      message,
+      type
+    }
+
+    setTimeout(() => {
+      this.alert_config.show = false
+    }, 3000);
+  };
+
   onReset(): void {
     this.submitted = false;
     this.skillForm.reset();
@@ -82,7 +113,7 @@ export class SkillsComponent implements OnInit {
     this.submitted = true;
 
     this.modal_config.type === 'add' ?
-      console.log('🔥add: ', this.skillForm.value) :
+      this.addSkill() :
       console.log('🔥edit: ', this.skillForm.value);
 
     this.onReset();
