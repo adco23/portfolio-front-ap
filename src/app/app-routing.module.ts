@@ -6,12 +6,12 @@ import { HomeComponent } from './pages/home/home.component'
 import { SkillsComponent } from './pages/skills/skills.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'about_me', component: AboutComponent },
-  { path: 'experience', component: ExperienceComponent },
-  { path: 'education', component: ExperienceComponent },
-  { path: 'skills', component: SkillsComponent },
+  // { path: '', redirectTo: '/home', pathMatch: 'full' },
+  // { path: 'home', component: HomeComponent },
+  // { path: 'about_me', component: AboutComponent },
+  // { path: 'experience', component: ExperienceComponent },
+  // { path: 'education', component: ExperienceComponent },
+  // { path: 'skills', component: SkillsComponent },
 ];
 
 @NgModule({
