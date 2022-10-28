@@ -84,11 +84,14 @@ class="fixed inset-0 z-40 flex items-center justify-center w-screen overflow-x-h
 
         <div class="input-container">
           <label class="label_input">Nombre</label>
-          <input type="text" name="name" formControlName="name" class="form-input" maxlength="100" minlength="3" spellcheck="true">
+          <input type="text" name="name" formControlName="name" class="form-input" maxlength="100" minlength="3" spellcheck="true" list="_skills">
           <div *ngIf="form.name.errors" class="error-msg">
             <span *ngIf="form.name.errors.required">obligatorio</span>
             <!-- <span *ngIf="form.name.errors.exists">ya existe</span> -->
           </div>
+          <datalist id="_skills">
+            <option *ngFor="let item of skills" [value]="item.name">{{item.name}}</option>
+          </datalist>
         </div>
 
         <div class="w-11/12 text-gray-700 ">
