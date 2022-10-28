@@ -1,0 +1,129 @@
+<div
+  class="box-border flex flex-col items-start justify-start min-h-screen p-10 bg-gradient-1 md:p-20"
+>
+  <h1 class="pt-10 text-3xl font-bold">Habilidades</h1>
+
+  <button
+    *ngIf="status.isLoaded"
+    class="transition-all duration-150 ease-linear underline-from-center"
+    (click)="openModal('add')"
+  >
+    agregar
+  </button>
+
+  <div class="w-full flex flex-col justify-start items-center">
+    <div class="w-2/3 grid grid-rows-12 grid-cols-1 gap-4">
+      <div class="h-fit">
+        <h3 class="font-DM_Mono text-lg">Idiomas</h3>
+        <div class="flex flex-row gap-2 capitalize flex-wrap">
+          <app-skill-chips
+            *ngFor="let item of skills | skillFilter: 'language'"
+            [skill]="item"
+            (deleteEvent)="deleteItem($event)"
+            (editEvent)="editItem($event)"
+            ></app-skill-chips>
+        </div>
+
+        <div *ngIf="!status.isLoaded" class="flex flex-row gap-2 animate-pulse">
+          <div class="h-8 py-3 w-24 rounded-full bg-white shadow-lg"></div>
+          <div class="h-8 py-3 w-24 rounded-full bg-white shadow-lg"></div>
+          <div class="h-8 py-3 w-24 rounded-full bg-white shadow-lg"></div>
+        </div>
+      </div>
+      <div class="h-fit">
+        <h3 class="font-DM_Mono text-lg">Tecnologías</h3>
+        <div class="flex flex-row gap-2 capitalize flex-wrap">
+          <app-skill-chips
+            *ngFor="let item of skills | skillFilter: 'hard'"
+            [skill]="item"
+            (deleteEvent)="deleteItem($event)"
+            (editEvent)="editItem($event)"
+            ></app-skill-chips>
+        </div>
+
+        <div *ngIf="!status.isLoaded" class="flex flex-row gap-2 animate-pulse">
+          <div class="h-8 py-3 w-24 rounded-full bg-white shadow-lg"></div>
+          <div class="h-8 py-3 w-24 rounded-full bg-white shadow-lg"></div>
+          <div class="h-8 py-3 w-24 rounded-full bg-white shadow-lg"></div>
+        </div>
+      </div>
+      <div class="h-fit">
+        <h3 class="font-DM_Mono text-lg">Competencias</h3>
+        <div class="flex flex-row gap-2 capitalize flex-wrap">
+          <app-skill-chips
+            *ngFor="let item of skills | skillFilter: 'soft'"
+            [skill]="item"
+            (deleteEvent)="deleteItem($event)"
+            (editEvent)="editItem($event)"
+            ></app-skill-chips>
+        </div>
+
+        <div *ngIf="!status.isLoaded" class="flex flex-row gap-2 animate-pulse">
+          <div class="h-8 py-3 w-24 rounded-full bg-white shadow-lg"></div>
+          <div class="h-8 py-3 w-24 rounded-full bg-white shadow-lg"></div>
+          <div class="h-8 py-3 w-24 rounded-full bg-white shadow-lg"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="modal_config.show"
+class="fixed inset-0 z-40 flex items-center justify-center w-screen overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+  <div
+    class="relative flex flex-col items-center justify-start w-11/12 top-5 max-w-3xl bg-white border-0 rounded-lg shadow-lg"
+  >
+    <form [formGroup]="skillForm" autocomplete="off" (ngSubmit)="onSubmit()"
+    class="flex flex-col w-full justify-between items-center">
+
+      <div class="flex flex-col items-start w-11/12 py-4 h-[10%]">
+        <h4 class="text-xl font-bold uppercase">{{modal_config.title}}</h4>
+      </div>
+
+      <div class="flex flex-col items-center w-full gap-2 justify-between">
+
+        <div class="input-container">
+          <label class="label_input">Nombre</label>
+          <input type="text" name="name" formControlName="name" class="form-input" maxlength="100" minlength="3" spellcheck="true" list="_skills">
+          <div *ngIf="form.name.errors" class="error-msg">
+            <span *ngIf="form.name.errors.required">obligatorio</span>
+            <!-- <span *ngIf="form.name.errors.exists">ya existe</span> -->
+          </div>
+          <datalist id="_skills">
+            <option *ngFor="let item of skills" [value]="item.name">{{item.name}}</option>
+          </datalist>
+        </div>
+
+        <div class="w-11/12 text-gray-700 ">
+          <label class="label_input">Selecciona un tipo</label>
+
+          <select name="type" formControlName="type" class="form-select capitalize rounded-lg border-gray-300 mt-1 block shadow-sm focus:border-rj-azalea-v2 focus:ring focus:ring-rj-azalea focus:ring-opacity-50 h-10">
+            <option value="">Tipo</option>
+            <option *ngFor="let item of skillTypes" [value]="item" class="capitalize">{{item}}</option>
+          </select>
+
+          <div *ngIf="form.type.errors" class="error-msg">
+            <span *ngIf="form.type.errors.required">obligatorio</span>
+          </div>
+
+          <div class="w-32 pt-3" *ngIf="skillForm.controls['type'].value === 'language'">
+            <label class="label-input">Nivel</label>
+            <input type="text" name="level" formControlName="level" class="from-input">
+          </div>
+
+        </div>
+      </div>
+
+      <div class="modal-actions py-2 h-[10%] w-11/12 flex flex-row justify-end">
+        <button  class="cancel" (click)="onReset()">Cancelar</button>
+        <button type="submit" class="submit" [disabled]="skillForm.invalid">{{modal_config.btnText}}</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="modal_config.show" class="fixed inset-0 z-30 bg-black opacity-25"></div>
+
+<app-alert [showAlert]="alert_config.show" [message]="alert_config.message" [typeAlert]="alert_config.type"></app-alert>
+
+
