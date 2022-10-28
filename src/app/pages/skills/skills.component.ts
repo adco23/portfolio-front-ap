@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Skill, skill_types } from 'src/app/models/skill';
 import { SkillsService } from 'src/app/services/skills.service';
+import { ValidateExists } from 'src/app/validators/exists.validator';
 
 @Component({
   selector: 'app-skills',
@@ -41,7 +42,7 @@ export class SkillsComponent implements OnInit {
     this.getSkills();
 
     this.skillForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required]],
       level: [null],
       type: ['', Validators.required]
     })
@@ -57,14 +58,20 @@ export class SkillsComponent implements OnInit {
 
   private addSkill(): void {
     try {
+      let value = this.skillForm.controls['name'].value;
+      let exists = this.skills.map(item => item.name.toLowerCase()).includes(value.toLowerCase());
+
+      if (exists) throw new Error('Ya existe');
+
       this.skillService.addSkill(this.skillForm.value)
         .subscribe(data => {
           this.toggleAlert(data.message, 'success');
           this.getSkills();
         })
+
       } catch (error: any) {
       this.toggleAlert(error, 'danger');
-      console.log('\x1b[31mAdd skill error: \x1b[0m', error);
+      console.error('\x1b[31mAdd skill error: \x1b[0m', error);
     }
   };
 
@@ -92,6 +99,21 @@ export class SkillsComponent implements OnInit {
       this.toggleAlert(error, 'danger');
       console.log('\x1b[31mEdit skill error: \x1b[0m', error);
     }
+  };
+
+  private exists(): any {
+    return (formGroup: FormGroup) => {
+      let newSkill = formGroup.controls['name'];
+      let list = this.skills.map(item => item.name.toLowerCase());
+
+      if (newSkill.errors && !newSkill.errors['exists']) return;
+
+      if (list.includes(newSkill.value.toLowerCase())) {
+        newSkill.setErrors({ exists: true });
+      } else {
+        newSkill.setErrors(null);
+      }
+    };
   };
 
   get form(): any {
@@ -155,7 +177,7 @@ export class SkillsComponent implements OnInit {
 
     this.modal_config.type === 'add' ?
       this.addSkill() :
-      console.log('🔥edit: ', this.skillForm.value);
+      this.editSkill();
 
     this.onReset();
   };

@@ -87,8 +87,7 @@ class="fixed inset-0 z-40 flex items-center justify-center w-screen overflow-x-h
           <input type="text" name="name" formControlName="name" class="form-input" maxlength="100" minlength="3" spellcheck="true">
           <div *ngIf="form.name.errors" class="error-msg">
             <span *ngIf="form.name.errors.required">obligatorio</span>
-            <!-- <span *ngIf="form.title.errors.maxlength">debe tener una longitud menor o igual a 100 caracteres</span>
-            <span *ngIf="form.title.errors.minlength">debe tener una longitud mayor a 3 caracteres</span> -->
+            <!-- <span *ngIf="form.name.errors.exists">ya existe</span> -->
           </div>
         </div>
 
