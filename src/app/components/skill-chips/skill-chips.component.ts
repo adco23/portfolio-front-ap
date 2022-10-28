@@ -11,6 +11,7 @@ export class SkillChipsComponent implements OnInit {
   text: string;
   @Input() skill: Skill;
   @Output() deleteEvent = new EventEmitter<any>();
+  @Output() editEvent = new EventEmitter<any>();
 
   constructor() { }
 
@@ -26,6 +27,10 @@ export class SkillChipsComponent implements OnInit {
 
   delete(): void {
     this.deleteEvent.emit(this.skill.id);
+  };
+
+  edit(): void {
+    this.editEvent.emit(this.skill.id);
   };
 
 }
