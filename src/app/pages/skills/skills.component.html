@@ -20,6 +20,7 @@
             *ngFor="let item of skills | skillFilter: 'language'"
             [skill]="item"
             (deleteEvent)="deleteItem($event)"
+            (editEvent)="editItem($event)"
             ></app-skill-chips>
         </div>
 
@@ -36,6 +37,7 @@
             *ngFor="let item of skills | skillFilter: 'hard'"
             [skill]="item"
             (deleteEvent)="deleteItem($event)"
+            (editEvent)="editItem($event)"
             ></app-skill-chips>
         </div>
 
@@ -52,6 +54,7 @@
             *ngFor="let item of skills | skillFilter: 'soft'"
             [skill]="item"
             (deleteEvent)="deleteItem($event)"
+            (editEvent)="editItem($event)"
             ></app-skill-chips>
         </div>
 
@@ -103,7 +106,7 @@ class="fixed inset-0 z-40 flex items-center justify-center w-screen overflow-x-h
 
           <div class="w-32 pt-3" *ngIf="skillForm.controls['type'].value === 'language'">
             <label class="label-input">Nivel</label>
-            <input type="text" formArrayName="level" class="from-input">
+            <input type="text" name="level" formControlName="level" class="from-input">
           </div>
 
         </div>

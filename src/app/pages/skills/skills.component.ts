@@ -42,7 +42,7 @@ export class SkillsComponent implements OnInit {
 
     this.skillForm = this.formBuilder.group({
       name: ['', Validators.required],
-      level: null,
+      level: [null],
       type: ['', Validators.required]
     })
   }
@@ -130,6 +130,16 @@ export class SkillsComponent implements OnInit {
 
   deleteItem(id: any) {
     this.deleteSkill(id);
+  };
+
+  editItem(skill: any) {
+    this.toEditId = skill.id;
+
+    this.skillForm.controls['name'].setValue(skill.name);
+    this.skillForm.controls['type'].setValue(skill.type);
+    this.skillForm.controls['level'].setValue(skill.level);
+
+    this.openModal('edit');
   };
 
   onReset(): void {

@@ -30,7 +30,7 @@ export class SkillChipsComponent implements OnInit {
   };
 
   edit(): void {
-    this.editEvent.emit(this.skill.id);
+    this.editEvent.emit(this.skill);
   };
 
 }
