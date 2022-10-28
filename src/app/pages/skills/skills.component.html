@@ -16,7 +16,11 @@
       <div class="h-fit">
         <h3 class="font-DM_Mono text-lg">Idiomas</h3>
         <div class="flex flex-row gap-2 capitalize flex-wrap">
-          <app-skill-chips *ngFor="let item of skills | skillFilter: 'language'" [skill]="item" (deleteEvent)="deleteItem($event)"></app-skill-chips>
+          <app-skill-chips
+            *ngFor="let item of skills | skillFilter: 'language'"
+            [skill]="item"
+            (deleteEvent)="deleteItem($event)"
+            ></app-skill-chips>
         </div>
 
         <div *ngIf="!status.isLoaded" class="flex flex-row gap-2 animate-pulse">
@@ -28,7 +32,11 @@
       <div class="h-fit">
         <h3 class="font-DM_Mono text-lg">Tecnologías</h3>
         <div class="flex flex-row gap-2 capitalize flex-wrap">
-          <app-skill-chips *ngFor="let item of skills | skillFilter: 'hard'" [skill]="item" (deleteEvent)="deleteItem($event)"></app-skill-chips>
+          <app-skill-chips
+            *ngFor="let item of skills | skillFilter: 'hard'"
+            [skill]="item"
+            (deleteEvent)="deleteItem($event)"
+            ></app-skill-chips>
         </div>
 
         <div *ngIf="!status.isLoaded" class="flex flex-row gap-2 animate-pulse">
@@ -40,7 +48,11 @@
       <div class="h-fit">
         <h3 class="font-DM_Mono text-lg">Competencias</h3>
         <div class="flex flex-row gap-2 capitalize flex-wrap">
-          <app-skill-chips *ngFor="let item of skills | skillFilter: 'soft'" [skill]="item" (deleteEvent)="deleteItem($event)"></app-skill-chips>
+          <app-skill-chips
+            *ngFor="let item of skills | skillFilter: 'soft'"
+            [skill]="item"
+            (deleteEvent)="deleteItem($event)"
+            ></app-skill-chips>
         </div>
 
         <div *ngIf="!status.isLoaded" class="flex flex-row gap-2 animate-pulse">
