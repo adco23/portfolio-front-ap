@@ -1,0 +1,19 @@
+<div class="w-full max-h-full bg-white z-[1] rounded-xl shadow-md overflow-hidden relative flex flex-col items-center md:w-72">
+  <div class="w-full h-52">
+    <img [src]="project.img" class="w-full">
+  </div>
+
+  <div class="w-full h-full p-4 bg-white flex flex-col justify-around">
+    <h3 class="font-bold text-rj-azalea-v2 capitalize">{{project.title}}</h3>
+  </div>
+</div>
+
+<div class="w-60 absolute z-[2] bg-cv-pink-t1 rounded-xl p-4 -top-2 -right-6 shadow-md hidden group-hover:block">
+    <h3 class="font-bold text-rj-mountbatten capitalize">{{project.title}}</h3>
+    <div class="flex flex-row">
+      <div class="bg-transparent w-7 h-7 rounded-full p-1 hover:bg-white transition ease-in duration-200 flex flex-row justify-center items-center"><a [href]="project.link" class=""><fa-icon [icon]="icon.link"></fa-icon></a></div>
+      <div class="bg-transparent w-7 h-7 rounded-full p-1 hover:bg-white transition ease-in duration-200 flex flex-row justify-center items-center"><button class=""><fa-icon [icon]="icon.pencil"></fa-icon></button></div>
+      <div class="bg-transparent w-7 h-7 rounded-full p-1 hover:bg-white transition ease-in duration-200 flex flex-row justify-center items-center"><button class=""><fa-icon [icon]="icon.trash"></fa-icon></button></div>
+    </div>
+  <p class="cursor-default leading-6 text-left">{{project.description}}</p>
+</div>
