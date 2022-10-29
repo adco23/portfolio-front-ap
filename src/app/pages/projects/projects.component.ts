@@ -98,7 +98,10 @@ export class ProjectsComponent implements OnInit {
   onSubmit(): void {
     if (this.projectForm.invalid) return;
 
-    console.log('onSubmit')
-    console.log(this.projectForm.value)
+    this.modal_config.type === 'add'
+      ? this.addProject()
+      : console.log('onSubmit');
+
+    this.onReset();
   };
 }
