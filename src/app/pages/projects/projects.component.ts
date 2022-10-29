@@ -18,10 +18,10 @@ export class ProjectsComponent implements OnInit {
     isEmpty: true,
   };
   modal_config = {
-    show: true,
-    type: 'add',
-    title: 'agregar',
-    btnText: 'agregar'
+    show: false,
+    type: '',
+    title: '',
+    btnText: ''
   };
 
   constructor(
@@ -57,7 +57,16 @@ export class ProjectsComponent implements OnInit {
 
   get form(): any {
     return this.projectForm.controls
-  }
+  };
+
+  openModal(type: string): void {
+    this.modal_config = {
+      type,
+      show: true,
+      title: type === 'add' ? 'Agregar proyecto' : 'Editar proyecto',
+      btnText: type === 'add' ? 'Agregar' : 'Editar',
+    }
+  };
 
   onReset(): void {
     console.log('onReset')
