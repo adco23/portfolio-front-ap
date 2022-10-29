@@ -125,7 +125,7 @@ export class ProjectsComponent implements OnInit {
 
     this.modal_config.type === 'add'
       ? this.addProject()
-      : console.log('onSubmit');
+      : this.editProject();
 
     this.onReset();
   };
