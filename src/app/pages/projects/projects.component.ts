@@ -12,6 +12,7 @@ export class ProjectsComponent implements OnInit {
 
   projects: Project[];
   projectForm: FormGroup;
+  idToEdit: number;
 
   status = {
     isLoaded: false,
@@ -76,6 +77,18 @@ export class ProjectsComponent implements OnInit {
         })
     } catch (error: any) {
       console.error('\x1b[31mDelete project error: \x1b[0m', error);
+    }
+  };
+
+  private editProject(): void {
+    try {
+      this.projectService.editProject(this.idToEdit, this.projectForm.value)
+        .subscribe(data => {
+          console.log(data);
+          this.getProjects();
+        })
+    } catch (error: any) {
+      console.error('\x1b[31mEdit project error: \x1b[0m', error);
     }
   };
 
