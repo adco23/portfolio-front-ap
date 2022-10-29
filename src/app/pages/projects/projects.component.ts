@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Project } from 'src/app/models/project';
 import { ProjectsService } from 'src/app/services/projects.service';
 
@@ -10,24 +11,33 @@ import { ProjectsService } from 'src/app/services/projects.service';
 export class ProjectsComponent implements OnInit {
 
   projects: Project[];
+  projectForm: FormGroup;
 
   status = {
     isLoaded: false,
     isEmpty: true,
   };
   modal_config = {
-    show: false,
-    type: '',
-    title: '',
-    btnText: ''
+    show: true,
+    type: 'add',
+    title: 'agregar',
+    btnText: 'agregar'
   };
 
   constructor(
-    private projectService: ProjectsService
+    private projectService: ProjectsService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
     this.getProjects();
+
+    this.projectForm = this.formBuilder.group({
+      title: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+      description: [null, Validators.maxLength(150)],
+      img: null,
+      link: null
+    });
   }
 
   private getProjects(): void {
@@ -44,4 +54,8 @@ export class ProjectsComponent implements OnInit {
       console.error(error);
     }
   };
+
+  get form(): any {
+    return this.projectForm.controls
+  }
 }
