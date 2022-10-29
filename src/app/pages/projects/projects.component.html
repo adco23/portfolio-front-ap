@@ -2,4 +2,16 @@
   class="box-border flex flex-col items-start justify-start min-h-screen p-10 bg-gradient-1 md:p-20"
 >
   <h1 class="pt-10 text-3xl font-bold">Proyectos</h1>
+
+  <div class="w-full h-full flex flex-col gap-8 md:flex-row md:flex-wrap md:justify-center">
+    <app-project-card
+      *ngFor="let item of projects"
+      [project]="item"
+      class="w-full flex justify-center md:w-fit relative group"
+    ></app-project-card>
+
+    <app-scard *ngIf="!status.isLoaded" class="w-full md:w-5/6 lg:w-1/2"></app-scard>
+    <app-scard *ngIf="!status.isLoaded" class="w-full md:w-5/6 lg:w-1/2"></app-scard>
+    <app-scard *ngIf="!status.isLoaded" class="w-full md:w-5/6 lg:w-1/2"></app-scard>
+  </div>
 </div>
