@@ -67,6 +67,18 @@ export class ProjectsComponent implements OnInit {
     }
   };
 
+  private deleteProject(id: number): void {
+    try {
+      this.projectService.deleteProject(id)
+        .subscribe(data => {
+          console.log(data);
+          this.getProjects();
+        })
+    } catch (error: any) {
+      console.error('\x1b[31mDelete project error: \x1b[0m', error);
+    }
+  };
+
   get form(): any {
     return this.projectForm.controls
   };
