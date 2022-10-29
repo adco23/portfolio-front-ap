@@ -58,4 +58,15 @@ export class ProjectsComponent implements OnInit {
   get form(): any {
     return this.projectForm.controls
   }
+
+  onReset(): void {
+    console.log('onReset')
+  };
+
+  onSubmit(): void {
+    if (this.projectForm.invalid) return;
+
+    console.log('onSubmit')
+    console.log(this.projectForm.value)
+  };
 }
