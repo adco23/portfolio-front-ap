@@ -11,6 +11,7 @@ export class ProjectCardComponent implements OnInit {
 
   @Input() project: Project;
   @Output() delete_action = new EventEmitter();
+  @Output() edit_action = new EventEmitter();
 
   show_description: boolean = false;
   default_img: string = 'https://i.pinimg.com/564x/6b/02/cd/6b02cd228d391a474a582d8510bf4be8.jpg';
@@ -27,5 +28,9 @@ export class ProjectCardComponent implements OnInit {
 
   delete(): void {
     this.delete_action.emit(this.project.id);
+  };
+
+  edit(): void {
+    this.edit_action.emit(this.project);
   };
 }

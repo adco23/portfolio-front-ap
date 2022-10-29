@@ -133,4 +133,14 @@ export class ProjectsComponent implements OnInit {
   deleteItem(id: number): void {
     this.deleteProject(id);
   };
+
+  editItem(project: any): void {
+    let keys = Object.keys(project);
+
+    this.idToEdit = project.id;
+
+    keys.forEach(key => key !== 'id' ? this.projectForm.controls[key].setValue(project[key]) : false);
+
+    this.openModal('edit');
+  };
 }
