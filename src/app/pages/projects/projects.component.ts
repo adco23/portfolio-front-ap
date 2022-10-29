@@ -116,4 +116,8 @@ export class ProjectsComponent implements OnInit {
 
     this.onReset();
   };
+
+  deleteItem(id: number): void {
+    this.deleteProject(id);
+  };
 }

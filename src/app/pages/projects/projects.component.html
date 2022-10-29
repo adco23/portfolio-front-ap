@@ -10,6 +10,7 @@
       *ngFor="let item of projects"
       [project]="item"
       class="w-full flex justify-center md:w-fit relative group"
+      (delete_action)="deleteItem($event)"
     ></app-project-card>
 
     <app-scard *ngIf="!status.isLoaded" class="w-full md:w-5/6 lg:w-1/2"></app-scard>
