@@ -103,7 +103,7 @@
         </div>
 
         <div class="modal-actions py-2 h-[10%] w-11/12 flex flex-row justify-end">
-          <button  class="cancel" (click)="onReset()">Cancelar</button>
+          <button type="button" class="cancel" (click)="onReset()">Cancelar</button>
           <button type="submit" class="submit" [disabled]="educationForm.invalid">{{modal_config.btnText}}</button>
         </div>
       </form>
