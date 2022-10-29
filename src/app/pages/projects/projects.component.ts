@@ -55,6 +55,18 @@ export class ProjectsComponent implements OnInit {
     }
   };
 
+  private addProject(): void {
+    try {
+      this.projectService.addProject(this.projectForm.value)
+        .subscribe(data => {
+          console.log(data);
+          this.getProjects();
+        });
+    } catch (error: any) {
+      console.error('\x1b[31mAdd project error: \x1b[0m', error);
+    }
+  };
+
   get form(): any {
     return this.projectForm.controls
   };
