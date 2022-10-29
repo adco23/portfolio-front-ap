@@ -14,7 +14,13 @@ export class ProjectsComponent implements OnInit {
   status = {
     isLoaded: false,
     isEmpty: true,
-  }
+  };
+  modal_config = {
+    show: false,
+    type: '',
+    title: '',
+    btnText: ''
+  };
 
   constructor(
     private projectService: ProjectsService
@@ -38,5 +44,4 @@ export class ProjectsComponent implements OnInit {
       console.error(error);
     }
   };
-
 }
