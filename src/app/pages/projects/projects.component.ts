@@ -68,8 +68,19 @@ export class ProjectsComponent implements OnInit {
     }
   };
 
+  closeModal(): void {
+    this.modal_config = {
+      show: false,
+      type: '',
+      title: '',
+      btnText: '',
+    }
+  };
+
   onReset(): void {
-    console.log('onReset')
+    this.projectForm.reset();
+
+    this.closeModal();
   };
 
   onSubmit(): void {
