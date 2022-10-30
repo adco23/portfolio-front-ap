@@ -24,6 +24,11 @@ export class ProjectsComponent implements OnInit {
     title: '',
     btnText: ''
   };
+  alert_config = {
+    show: false,
+    type: '',
+    message: ''
+  };
 
   constructor(
     private projectService: ProjectsService,
@@ -51,8 +56,9 @@ export class ProjectsComponent implements OnInit {
             isEmpty: data.length === 0 ? true : false
           }
         })
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      this.toggleAlert(error, 'danger');
+      console.error('\x1b[31mGet project error: \x1b[0m', error);
     }
   };
 
@@ -60,22 +66,24 @@ export class ProjectsComponent implements OnInit {
     try {
       this.projectService.addProject(this.projectForm.value)
         .subscribe(data => {
-          console.log(data);
+          this.toggleAlert(data.message, 'success');
           this.getProjects();
         });
-    } catch (error: any) {
-      console.error('\x1b[31mAdd project error: \x1b[0m', error);
-    }
-  };
+      } catch (error: any) {
+        this.toggleAlert(error, 'danger');
+        console.error('\x1b[31mAdd project error: \x1b[0m', error);
+      }
+    };
 
-  private deleteProject(id: number): void {
-    try {
-      this.projectService.deleteProject(id)
-        .subscribe(data => {
-          console.log(data);
+    private deleteProject(id: number): void {
+      try {
+        this.projectService.deleteProject(id)
+          .subscribe(data => {
+          this.toggleAlert(data.message, 'success');
           this.getProjects();
         })
     } catch (error: any) {
+      this.toggleAlert(error, 'danger');
       console.error('\x1b[31mDelete project error: \x1b[0m', error);
     }
   };
@@ -84,10 +92,11 @@ export class ProjectsComponent implements OnInit {
     try {
       this.projectService.editProject(this.idToEdit, this.projectForm.value)
         .subscribe(data => {
-          console.log(data);
+          this.toggleAlert(data.message, 'success');
           this.getProjects();
         })
     } catch (error: any) {
+      this.toggleAlert(error, 'danger');
       console.error('\x1b[31mEdit project error: \x1b[0m', error);
     }
   };
@@ -142,5 +151,17 @@ export class ProjectsComponent implements OnInit {
     keys.forEach(key => key !== 'id' ? this.projectForm.controls[key].setValue(project[key]) : false);
 
     this.openModal('edit');
+  };
+
+  toggleAlert(message: string, type: string){
+    this.alert_config = {
+      show: true,
+      message,
+      type
+    }
+
+    setTimeout(() => {
+      this.alert_config.show = false
+    }, 3000);
   };
 }
