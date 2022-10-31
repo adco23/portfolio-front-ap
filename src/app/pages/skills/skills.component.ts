@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Skill, skill_types } from 'src/app/models/skill';
 import { SkillsService } from 'src/app/services/skills.service';
+import { TokenService } from 'src/app/services/token.service';
 import { ValidateExists } from 'src/app/validators/exists.validator';
 
 @Component({
@@ -20,6 +21,7 @@ export class SkillsComponent implements OnInit {
   status = {
     isLoaded: false,
     isEmpty: true,
+    isAuthorized: false,
   };
   modal_config = {
     show: false,
@@ -35,11 +37,14 @@ export class SkillsComponent implements OnInit {
 
   constructor(
     private skillService: SkillsService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private tokenService: TokenService
   ) { }
 
   ngOnInit(): void {
     this.getSkills();
+
+    this.getAuthorities();
 
     this.skillForm = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -116,6 +121,13 @@ export class SkillsComponent implements OnInit {
     };
   };
 
+  private getAuthorities() {
+    let auth = this.tokenService.getAuthorities();
+
+    this.status.isAuthorized = auth &&
+      auth.map(item => item.authority).includes('ROLE_ADMIN') ? true : false;
+  };
+
   get form(): any {
     return this.skillForm.controls;
   };
@@ -155,11 +167,15 @@ export class SkillsComponent implements OnInit {
   };
 
   editItem(skill: any) {
+    let keys = Object.keys(skill);
+
     this.toEditId = skill.id;
 
-    this.skillForm.controls['name'].setValue(skill.name);
-    this.skillForm.controls['type'].setValue(skill.type);
-    this.skillForm.controls['level'].setValue(skill.level);
+    keys.forEach(key => key !== 'id' ? this.skillForm.controls[key].setValue(skill[key]) : false);
+
+    // this.skillForm.controls['name'].setValue(skill.name);
+    // this.skillForm.controls['type'].setValue(skill.type);
+    // this.skillForm.controls['level'].setValue(skill.level);
 
     this.openModal('edit');
   };

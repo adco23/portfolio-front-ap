@@ -3,7 +3,7 @@
 >
   <h1 class="pt-10 text-3xl font-bold">Experiencia</h1>
 
-  <button *ngIf="isLoaded" (click)="openDialog('add')" class="transition-all duration-150 ease-linear underline-from-center">agregar</button>
+  <button *ngIf="isLoaded && isAuthorized" (click)="openDialog('add')" class="transition-all duration-150 ease-linear underline-from-center">agregar</button>
 
   <app-modal>
 
