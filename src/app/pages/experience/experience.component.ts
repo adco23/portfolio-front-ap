@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Experience } from 'src/app/models/experience';
 import { ExperiencesService } from 'src/app/services/experiences.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-experience',
@@ -27,14 +28,18 @@ export class ExperienceComponent implements OnInit {
     type: '',
   }
   isLoaded: boolean = false;
+  isAuthorized: boolean = false;
 
   constructor(
     private experienceService: ExperiencesService,
     private formBuilder: FormBuilder,
+    private tokenService: TokenService
   ) { }
 
   ngOnInit(): void {
     this.getExperiences();
+
+    this.getAuthorities();
 
     this.experienceForm = this.formBuilder.group({
       position: ['', [Validators.required, Validators.maxLength(100), Validators.minLength(3)]],
@@ -44,9 +49,6 @@ export class ExperienceComponent implements OnInit {
       start_date: ['', Validators.required],
       finish_date: [''],
     });
-
-    // this.openDialog();
-
   }
 
   private getExperiences(): void {
@@ -97,6 +99,13 @@ export class ExperienceComponent implements OnInit {
       console.log('\x1b[31mEdit experience error: \x1b[0m', error);
     }
   }
+
+  private getAuthorities() {
+    let auth = this.tokenService.getAuthorities();
+
+    this.isAuthorized = auth &&
+      auth.map(item => item.authority).includes('ROLE_ADMIN') ? true : false;
+  };
 
   toggleAlert(message: string, type: string){
     this.alert_config = {

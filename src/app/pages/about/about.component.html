@@ -4,7 +4,7 @@
   <h1 class="pt-10 text-3xl font-bold">Sobre mi</h1>
 
   <button
-    *ngIf="user.about"
+    *ngIf="isAuthorized && user.about"
     class="transition-all duration-150 ease-linear underline-from-center"
     type="button"
     (click)="toggleModal()"

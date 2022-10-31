@@ -12,8 +12,8 @@
     <h3 class="font-bold text-rj-mountbatten capitalize">{{project.title}}</h3>
     <div class="flex flex-row">
       <div *ngIf="project.link" class="bg-transparent w-7 h-7 rounded-full p-1 hover:bg-white transition ease-in duration-200 flex flex-row justify-center items-center"><a [href]="project.link" class=""><fa-icon [icon]="icon.link"></fa-icon></a></div>
-      <div class="bg-transparent w-7 h-7 rounded-full p-1 hover:bg-white transition ease-in duration-200 flex flex-row justify-center items-center"><button class="" (click)="edit()"><fa-icon [icon]="icon.pencil"></fa-icon></button></div>
-      <div class="bg-transparent w-7 h-7 rounded-full p-1 hover:bg-white transition ease-in duration-200 flex flex-row justify-center items-center"><button class="" (click)="delete()"><fa-icon [icon]="icon.trash"></fa-icon></button></div>
+      <div *ngIf="isAuthorized" class="bg-transparent w-7 h-7 rounded-full p-1 hover:bg-white transition ease-in duration-200 flex flex-row justify-center items-center"><button class="" (click)="edit()"><fa-icon [icon]="icon.pencil"></fa-icon></button></div>
+      <div *ngIf="isAuthorized" class="bg-transparent w-7 h-7 rounded-full p-1 hover:bg-white transition ease-in duration-200 flex flex-row justify-center items-center"><button class="" (click)="delete()"><fa-icon [icon]="icon.trash"></fa-icon></button></div>
     </div>
   <p class="cursor-default leading-6 text-left">{{project.description ? project.description : 'Sin descripción...'}}</p>
 </div>

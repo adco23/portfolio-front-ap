@@ -71,6 +71,10 @@
         <li class="cursor-pointer">
           <a appScrollAnchor="projects" class="nav-link-a">Proyectos</a>
         </li>
+        <li class="cursor-pointer">
+          <button class="nav-link-a" (click)="login()" *ngIf="!isLogged">Login</button>
+          <button class="nav-link-a" (click)="logout()" *ngIf="isLogged">Logout</button>
+        </li>
       </ul>
     </div>
   </div>
