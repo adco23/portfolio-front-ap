@@ -35,7 +35,7 @@ import { SkillFilterPipe } from './pipes/skill-filter.pipe';
 import { XMarksComponent } from './components/icons/x-marks/x-marks.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './pages/login/login.component';
 
 registerLocaleData(localeEs, 'es');
 
