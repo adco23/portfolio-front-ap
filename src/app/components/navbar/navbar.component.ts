@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
   logout(): void {
     this.tokenService.logout();
 
-    this.router.navigate(['/']);
+    window.location.reload();
   }
 
 }

@@ -38,7 +38,7 @@ export class TokenService {
     window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
   }
 
-  public getAuthorities(): string[] {
+  public getAuthorities(): any[] {
     this.roles = [];
 
     let itemStorage = sessionStorage.getItem(AUTHORITIES_KEY);

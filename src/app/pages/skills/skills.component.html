@@ -4,7 +4,7 @@
   <h1 class="pt-10 text-3xl font-bold">Habilidades</h1>
 
   <button
-    *ngIf="status.isLoaded"
+    *ngIf="status.isLoaded && status.isAuthorized"
     class="transition-all duration-150 ease-linear underline-from-center"
     (click)="openModal('add')"
   >
@@ -21,6 +21,7 @@
             [skill]="item"
             (deleteEvent)="deleteItem($event)"
             (editEvent)="editItem($event)"
+            (isAuthorized)="status.isAuthorized"
             ></app-skill-chips>
         </div>
 

@@ -8,7 +8,7 @@ import { SkillsComponent } from './pages/skills/skills.component';
 import { PagesContainerComponent } from './components/pages-container/pages-container.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: PagesContainerComponent },
   // { path: '', redirectTo: '/home', pathMatch: 'full' },

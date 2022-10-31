@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UsersService } from 'src/app/services/users.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-about',
@@ -10,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AboutComponent implements OnInit {
   user: User = {};
+  isAuthorized: boolean = false;
 
   aboutForm: FormGroup;
   submitted: boolean = false;
@@ -24,11 +26,14 @@ export class AboutComponent implements OnInit {
 
   constructor(
     private userService: UsersService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private tokenService: TokenService
   ) {}
 
   ngOnInit(): void {
     this.getUser();
+
+    this.getAuthorities();
 
     this.aboutForm = this.formBuilder.group({
       about: ['', Validators.maxLength(1500)],
@@ -58,6 +63,13 @@ export class AboutComponent implements OnInit {
       error: error => this.toggleAlert('Se produjo un error', 'danger')
     });
   }
+
+  private getAuthorities() {
+    let auth = this.tokenService.getAuthorities();
+
+    this.isAuthorized = auth &&
+      auth.map(item => item.authority).includes('ROLE_ADMIN') ? true : false;
+  };
 
   toggleModal() {
     this.showModal = !this.showModal;

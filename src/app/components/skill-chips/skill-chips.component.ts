@@ -10,6 +10,7 @@ export class SkillChipsComponent implements OnInit {
 
   text: string;
   @Input() skill: Skill;
+  @Input() isAuthorized: boolean;
   @Output() deleteEvent = new EventEmitter<any>();
   @Output() editEvent = new EventEmitter<any>();
 
@@ -30,7 +31,7 @@ export class SkillChipsComponent implements OnInit {
   };
 
   edit(): void {
-    this.editEvent.emit(this.skill);
+    this.isAuthorized ? this.editEvent.emit(this.skill) : false;
   };
 
 }

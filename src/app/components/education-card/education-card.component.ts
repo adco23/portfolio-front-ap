@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Education } from 'src/app/models/education';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'education-card',
@@ -17,14 +18,27 @@ export class EducationCardComponent implements OnInit {
   start_date: string;
   finish_date: any;
 
-  constructor() { }
+  isAuthorized: boolean = false;
+
+  constructor(
+    private tokenService: TokenService
+  ) { }
 
   ngOnInit(): void {
     this.education;
 
     this.start_date = this.dateFormat(this.education.start_year, this.education.start_month)
     this.finish_date = this.dateFormat(this.education.finish_year, this.education.finish_month)
+
+    this.getAuthorities();
   }
+
+  private getAuthorities() {
+    let auth = this.tokenService.getAuthorities();
+
+    this.isAuthorized = auth &&
+      auth.map(item => item.authority).includes('ROLE_ADMIN') ? true : false;
+  };
 
   deleteClick() {
     this.delete_action.emit(this.education.id);
