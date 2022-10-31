@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
@@ -12,8 +12,6 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
 export class TokenService {
 
   roles: string[] = [];
-
-  private URL: string = `${environment.apiUrl}/api/v1`;
 
   constructor(private httpClient: HttpClient) { }
 
