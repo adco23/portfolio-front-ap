@@ -36,6 +36,8 @@ import { XMarksComponent } from './components/icons/x-marks/x-marks.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
 import { LoginComponent } from './pages/login/login.component';
+import { PagesContainerComponent } from './components/pages-container/pages-container.component';
+import { interceptorProvider } from './services/interceptor.service';
 
 registerLocaleData(localeEs, 'es');
 
@@ -67,6 +69,7 @@ registerLocaleData(localeEs, 'es');
     ProjectsComponent,
     ProjectCardComponent,
     LoginComponent,
+    PagesContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,7 @@ registerLocaleData(localeEs, 'es');
     FontAwesomeModule,
     ReactiveFormsModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'es' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'es' }, interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

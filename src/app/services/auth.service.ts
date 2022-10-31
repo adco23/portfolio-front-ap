@@ -11,7 +11,8 @@ import { NewUser } from '../models/new-user';
 })
 export class AuthService {
 
-  authURL: string = `${environment.apiUrl}/auth/`;
+  // authURL: string = `${environment.apiUrl}/auth/`;
+  authURL: string = `http://localhost:8080/auth`;
 
   constructor(
     private httpClient: HttpClient,
