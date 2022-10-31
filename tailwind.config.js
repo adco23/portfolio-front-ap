@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         'cv-yellow': '#fae1d2',
         'cv-pink': '#ffadd7',
+        'cv-pink-t1': '#ffd6eb',
         'cv-blue': '#b8b5f1',
         'cv-purple': '#c8b3ed',
         'rj-azalea': '#f9c4c5',

@@ -33,6 +33,8 @@ import { ScrollManagerDirective } from './directives/scroll-manager.directive';
 import { SkillChipsComponent } from './components/skill-chips/skill-chips.component';
 import { SkillFilterPipe } from './pipes/skill-filter.pipe';
 import { XMarksComponent } from './components/icons/x-marks/x-marks.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
+import { ProjectCardComponent } from './components/project-card/project-card.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -61,6 +63,8 @@ registerLocaleData(localeEs, 'es');
     SkillChipsComponent,
     SkillFilterPipe,
     XMarksComponent,
+    ProjectsComponent,
+    ProjectCardComponent,
   ],
   imports: [
     BrowserModule,
