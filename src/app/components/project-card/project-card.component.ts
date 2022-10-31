@@ -10,6 +10,7 @@ import { faLink, faTrash, faPencil, } from '@fortawesome/free-solid-svg-icons';
 export class ProjectCardComponent implements OnInit {
 
   @Input() project: Project;
+  @Input() isAuthorized: boolean;
   @Output() delete_action = new EventEmitter();
   @Output() edit_action = new EventEmitter();
 

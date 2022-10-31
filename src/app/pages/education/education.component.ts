@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Education } from 'src/app/models/education';
 import { EducationService } from 'src/app/services/education.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-education',
@@ -11,6 +12,7 @@ import { EducationService } from 'src/app/services/education.service';
 export class EducationComponent implements OnInit {
   educationList: Education[] = [];
   isLoaded: boolean = false;
+  isAuthorized: boolean = false;
   educationForm: FormGroup;
   toEditId: number;
   submitted: boolean = false;
@@ -29,10 +31,13 @@ export class EducationComponent implements OnInit {
   constructor(
     private educationService: EducationService,
     private formBuilder: FormBuilder,
+    private tokenService: TokenService
   ) { }
 
   ngOnInit(): void {
     this.getEducation();
+
+    this.getAuthorities();
 
     this.educationForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.maxLength(100), Validators.minLength(3)]],
@@ -125,6 +130,13 @@ export class EducationComponent implements OnInit {
       //   matching.setErrors(null);
       // }
     };
+  };
+
+  private getAuthorities() {
+    let auth = this.tokenService.getAuthorities();
+
+    this.isAuthorized = auth &&
+      auth.map(item => item.authority).includes('ROLE_ADMIN') ? true : false;
   };
 
   get form(): any {

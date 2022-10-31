@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Project } from 'src/app/models/project';
 import { ProjectsService } from 'src/app/services/projects.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-projects',
@@ -17,6 +18,7 @@ export class ProjectsComponent implements OnInit {
   status = {
     isLoaded: false,
     isEmpty: true,
+    isAuthorized: false,
   };
   modal_config = {
     show: false,
@@ -32,11 +34,14 @@ export class ProjectsComponent implements OnInit {
 
   constructor(
     private projectService: ProjectsService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private tokenService: TokenService
   ) { }
 
   ngOnInit(): void {
     this.getProjects();
+
+    this.getAuthorities();
 
     this.projectForm = this.formBuilder.group({
       title: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
@@ -51,10 +56,8 @@ export class ProjectsComponent implements OnInit {
       this.projectService.getProjects()
         .subscribe(data => {
           this.projects = data;
-          this.status = {
-            isLoaded: true,
-            isEmpty: data.length === 0 ? true : false
-          }
+          this.status.isLoaded = true;
+          this.status.isEmpty = data.length === 0 ? true : false;
         })
     } catch (error: any) {
       this.toggleAlert(error, 'danger');
@@ -75,7 +78,7 @@ export class ProjectsComponent implements OnInit {
       }
     };
 
-    private deleteProject(id: number): void {
+  private deleteProject(id: number): void {
       try {
         this.projectService.deleteProject(id)
           .subscribe(data => {
@@ -99,6 +102,13 @@ export class ProjectsComponent implements OnInit {
       this.toggleAlert(error, 'danger');
       console.error('\x1b[31mEdit project error: \x1b[0m', error);
     }
+  };
+
+  private getAuthorities() {
+    let auth = this.tokenService.getAuthorities();
+
+    this.status.isAuthorized = auth &&
+      auth.map(item => item.authority).includes('ROLE_ADMIN') ? true : false;
   };
 
   get form(): any {

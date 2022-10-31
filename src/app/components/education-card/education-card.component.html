@@ -27,27 +27,14 @@
     </button> -->
   </p>
 
-
-  <!-- <div class="hidden md:flex md:w-2/3">
-    <div class="h-full w-[1px] mr-4 bg-rj-azalea-v2"></div>
-    <p class="leading-none"> -->
-      <!-- {{ showMore ? education.description : ( education.description | slice: 0:150) }} -->
-      <!-- {{ education.description }} -->
-      <!-- <button (click)="onShow()" *ngIf="!isShort" class="italic text-rj-mountbatten-v2">
-        <span *ngIf="!showMore">...ver más</span>
-        <span *ngIf="showMore">ver menos</span>
-      </button> -->
-    <!-- </p>
-  </div> -->
-
-  <div class="absolute right-4 top-4 flex flex-col items-end">
+  <div *ngIf="isAuthorized" class="absolute right-4 top-4 flex flex-col items-end">
     <button class="flex gap-1 peer pb-2">
       <div class="bg-rj-mountbatten-v2 rounded-full w-1 h-1"></div>
       <div class="bg-rj-mountbatten-v2 rounded-full w-1 h-1"></div>
       <div class="bg-rj-mountbatten-v2 rounded-full w-1 h-1"></div>
     </button>
 
-    <div class="hidden peer-hover:flex hover:flex flex-col items-end bg-rj-azalea px-2 py-1 shadow-md rounded-md text-rj-thunder-v2">
+    <div *ngIf="isAuthorized" class="hidden peer-hover:flex hover:flex flex-col items-end bg-rj-azalea px-2 py-1 shadow-md rounded-md text-rj-thunder-v2">
       <button (click)="editClick()">
         Editar
       </button>

@@ -44,6 +44,10 @@
     @apply rounded-lg border-gray-300 w-full mt-1 block shadow-sm focus:border-rj-azalea-v2 focus:ring focus:ring-rj-azalea focus:ring-opacity-50 h-10
   }
 
+  form input[type=password] {
+    @apply rounded-lg border-gray-300 w-full mt-1 block shadow-sm focus:border-rj-azalea-v2 focus:ring focus:ring-rj-azalea focus:ring-opacity-50 h-10
+  }
+
   form .textarea {
     @apply rounded-lg border-gray-300 w-full mt-1 block shadow-sm focus:border-rj-azalea-v2 focus:ring focus:ring-rj-azalea focus:ring-opacity-50
   }
