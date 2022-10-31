@@ -1,0 +1,76 @@
+<div class="bg-gradient-1 h-[100vh] grid grid-rows-6 justify-items-center">
+  <div
+    class="row-span-4 row-end-5 self-end w-[17rem] h-[17rem] md:w-[22rem] md:h-[22rem] flex justify-center items-center relative"
+  >
+    <!-- <img [src]="user.img" class="w-56 border-8 border-solid rounded-full border-rj-azalea md:w-72" alt="profile picture"> -->
+    <div class="relative w-full h-full rounded-full img-grid"></div>
+    <img
+      *ngIf="user.img"
+      [src]="user.img"
+      class="absolute w-56 rounded-full md:w-72"
+      alt="profile picture"
+    />
+    <div *ngIf="!user.img" class="absolute w-56 h-56 rounded-full md:w-72 md:h-72">
+      <div class="w-full h-full rounded-full animate-pulse bg-slate-200"></div>
+    </div>
+  </div>
+
+  <div class="row-span-2 row-start-5">
+    <div class="flex flex-col items-center justify-center">
+      <h1 *ngIf="user" class="text-4xl font-bold">
+        {{ user.first_name }} {{ user.last_name }}
+      </h1>
+      <h3 *ngIf="user" >{{ user.title }}</h3>
+
+      <div *ngIf="!user.first_name" class="animate-pulse bg-slate-200 rounded-full h-10 w-80"></div>
+      <div *ngIf="!user.title" class="animate-pulse bg-slate-200 rounded-full h-8 w-48"></div>
+    </div>
+
+    <div
+      class="flex flex-row justify-center gap-6 p-4 text-2xl text-rj-thunder-v2"
+    >
+      <a
+        href="#"
+        data-tooltip-target="tooltip-left"
+        data-tooltip-placement="left"
+        class="transition duration-300 ease-in-out delay-150 hover:text-rj-azalea hover:-translate-y-1 hover:scale-110"
+      >
+        <fa-icon [icon]="icon_linkedin" size="lg"></fa-icon>
+      </a>
+
+      <div
+        id="tooltip-left"
+        role="tooltip"
+        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+      >
+        Linkedin
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+
+      <a
+        href="#"
+        data-tooltip-target="tooltip-right"
+        data-tooltip-placement="right"
+        class="transition duration-300 ease-in-out delay-150 hover:text-rj-azalea hover:-translate-y-1 hover:scale-110"
+      >
+        <fa-icon [icon]="icon_github" size="lg"></fa-icon>
+      </a>
+
+      <div
+        id="tooltip-right"
+        role="tooltip"
+        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+      >
+        Github
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+    </div>
+  </div>
+  <!--
+<div class="flex flex-col items-center justify-center row-span-1 row-start-7 m-4">
+  Scroll down
+  <div class="flex flex-col items-center justify-start w-4 h-8 border-2 border-solid rounded-full border-rj-mountbatten">
+    <div class="w-1 h-1 rounded-full bg-rj-mountbatten animated_dot"></div>
+  </div>
+</div> -->
+</div>

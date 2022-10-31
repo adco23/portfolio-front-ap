@@ -1,0 +1,76 @@
+<div
+  class="box-border flex flex-col items-start justify-start min-h-screen p-10 bg-gradient-1 md:p-20"
+>
+  <h1 class="pt-10 text-3xl font-bold">Proyectos</h1>
+
+  <button *ngIf="status.isLoaded" (click)="openModal('add')" class="transition-all duration-150 ease-linear underline-from-center">agregar</button>
+
+  <div class="w-full h-full flex flex-col gap-8 md:flex-row md:flex-wrap md:justify-center">
+    <app-project-card
+      *ngFor="let item of projects"
+      [project]="item"
+      class="w-full flex justify-center md:w-fit relative group"
+      (delete_action)="deleteItem($event)"
+      (edit_action)="editItem($event)"
+    ></app-project-card>
+
+    <app-scard *ngIf="!status.isLoaded" class="w-full md:w-5/6 lg:w-1/2"></app-scard>
+    <app-scard *ngIf="!status.isLoaded" class="w-full md:w-5/6 lg:w-1/2"></app-scard>
+    <app-scard *ngIf="!status.isLoaded" class="w-full md:w-5/6 lg:w-1/2"></app-scard>
+  </div>
+</div>
+
+<div *ngIf="modal_config.show"
+class="fixed inset-0 z-40 flex items-center justify-center w-screen overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+  <div
+    class="relative flex flex-col items-center justify-start w-11/12 top-5 max-w-3xl bg-white border-0 rounded-lg shadow-lg"
+  >
+    <form [formGroup]="projectForm" autocomplete="off" (ngSubmit)="onSubmit()"
+    class="flex flex-col w-full justify-between items-center">
+
+      <div class="flex flex-col items-start w-11/12 py-4 h-[10%]">
+        <h4 class="text-xl font-bold uppercase">{{modal_config.title}}</h4>
+      </div>
+
+      <div class="flex flex-col items-center w-full gap-2 justify-between">
+
+        <div class="input-container">
+          <label class="label_input">Titulo</label>
+          <input type="text" name="title" formControlName="title" class="form-input" maxlength="100" minlength="3" spellcheck="true">
+          <div *ngIf="form.title.errors" class="error-msg">
+            <span *ngIf="form.title.errors.required">obligatorio</span>
+            <span *ngIf="form.title.errors.maxlength">máximo: 100 caracteres</span>
+            <span *ngIf="form.title.errors.minlength">mínimo: 3 caracteres</span>
+          </div>
+        </div>
+
+        <div class="input-container">
+          <label class="label_input">Descripción</label>
+          <textarea name="description" formControlName="description" rows="3" class="form-textarea textarea" maxlength="150"spellcheck="true"></textarea>
+          <div *ngIf="form.description.errors" class="error-msg">
+            <span *ngIf="form.description.errors.maxlength">máximo: 100 caracteres</span>
+          </div>
+        </div>
+
+        <div class="input-container">
+          <label class="label_input">Imagen</label>
+          <input type="text" name="img" formControlName="img" class="form-input" maxlength="150"spellcheck="true">
+        </div>
+
+        <div class="input-container">
+          <label class="label_input">Link</label>
+          <input type="text" name="link" formControlName="link" class="form-input" maxlength="150"spellcheck="true">
+        </div>
+      </div>
+
+      <div class="modal-actions py-2 h-[10%] w-11/12 flex flex-row justify-end">
+        <button type="button" class="cancel" (click)="onReset()">Cancelar</button>
+        <button type="submit" class="submit" [disabled]="projectForm.invalid">{{modal_config.btnText}}</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="modal_config.show" class="fixed inset-0 z-30 bg-black opacity-25"></div>
+
+<app-alert [showAlert]="alert_config.show" [message]="alert_config.message" [typeAlert]="alert_config.type"></app-alert>
